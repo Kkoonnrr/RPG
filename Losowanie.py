@@ -40,11 +40,11 @@ for i in range(1, num_of_items+1):
         rand = random.randrange(1, int(name_chance))
         if rand <= float(weapon[place][j].replace(',', '.'))*100:
             items[-1].name = weapon["nazwa"][j]
-            items[-1].accuracy = weapon["Celność"][j]
-            items[-1].damage = weapon["Obrażenia"][j]
-            items[-1].penetration = weapon["PP"][j]
-            items[-1].weapon_range = weapon["Zasięg"][j]
-            items[-1].strength_needed = weapon["Wymagana siła"][j]
+            items[-1].accuracy = int(weapon["Celność"][j])
+            items[-1].damage = int(weapon["Obrażenia"][j])
+            items[-1].penetration = int(weapon["PP"][j])
+            items[-1].weapon_range = int(weapon["Zasięg"][j])
+            items[-1].strength_needed = int(weapon["Wymagana siła"][j])
             name_found = True
         j = j+1
         if j == stop+1:
@@ -54,6 +54,11 @@ for i in range(1, num_of_items+1):
         rand = random.randrange(1, int(name_chance))
         if rand <= float(weapon["Szansa"][j].replace(',', '.'))*100:
             items[-1].modifier.append(weapon["Modyfikator"][j])
+            items[-1].accuracy = items[-1].accuracy + int(weapon["Celność.1"][j])
+            items[-1].damage = items[-1].damage + int(weapon["Obrażenia.1"][j])
+            items[-1].penetration = items[-1].penetration + int(weapon["PP.1"][j])
+            items[-1].weapon_range = items[-1].weapon_range + int(weapon["Zasięg.1"][j])
+            items[-1].strength_needed = items[-1].strength_needed + int(weapon["Wymagana siła.1"][j])
         j = j + 1
         if j == stop + 1:
             j = start
